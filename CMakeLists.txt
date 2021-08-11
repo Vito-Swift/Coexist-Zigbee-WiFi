@@ -1,19 +1,26 @@
 project(ZigBeeTestbed)
 message(${CMAKE_CURRENT_SOURCE_DIR})
-
 cmake_minimum_required(VERSION 3.7)
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 set(DRIVER_SRCS
-    driver/CC2520.c
-    driver/CC2520_HW.c)
+        driver/CC2520.c
+        driver/CC2520_HW.c
+        cca_utils/cca_utils.c)
 set(DRIVER_INCLUDE
-    driver/CC2520.h
-    driver/CC2520_HW.h)
+        driver/CC2520.h
+        driver/CC2520_HW.h
+        cca_utils/cca_utils.h)
 include_directories(driver)
-add_definitions(-L/usr/lib/libwiringPi.so -lwiringPi)
-add_library(CC2520_LIB SHARED ${DRIVER_SRCS} ${DRIVER_INCLUDE})
 
-add_executable(test_cca test_cca.cpp)
-target_link_libraries(test_cca PRIVATE CC2520_LIB)
+add_definitions(-L/usr/lib/libwiringPi.so -lwiringPi)
+set(CMAKE_CXX_FLAGS "-L/usr/lib/libwiringPi.so -lwiringPi")
+set(CMAKE_C_FLAGS "-L/usr/lib/libwiringPi.so -lwiringPi")
+add_library(DRIVER_LIB ${DRIVER_SRCS} ${DRIVER_INCLUDE})
+target_link_libraries(DRIVER_LIB PRIVATE Threads::Threads)
+target_include_directories(DRIVER_LIB PRIVATE pthread)
+
+add_executable(test_cca test_cca.c ${DRIVER_SRCS} ${DRIVER_INCLUDE})
+target_link_libraries(test_cca PRIVATE DRIVER_LIB Threads::Threads)
+target_include_directories(test_cca PRIVATE pthread)
