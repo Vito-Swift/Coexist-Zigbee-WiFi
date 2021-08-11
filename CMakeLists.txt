@@ -13,6 +13,7 @@ set(DRIVER_INCLUDE
         driver/CC2520_HW.h
         cca_utils/cca_utils.h)
 include_directories(driver)
+include_directories(WISE)
 
 add_definitions(-L/usr/lib/libwiringPi.so -lwiringPi)
 set(CMAKE_CXX_FLAGS "-L/usr/lib/libwiringPi.so -lwiringPi")
@@ -20,6 +21,9 @@ set(CMAKE_C_FLAGS "-L/usr/lib/libwiringPi.so -lwiringPi")
 add_library(DRIVER_LIB ${DRIVER_SRCS} ${DRIVER_INCLUDE})
 target_link_libraries(DRIVER_LIB PRIVATE Threads::Threads)
 target_include_directories(DRIVER_LIB PRIVATE pthread)
+
+add_library(WISE_LIB ${WISE_SRC})
+target_link_libraries(WISE_LIB PRIVATE DRIVER_LIB)
 
 add_executable(test_cca test_cca.c ${DRIVER_SRCS} ${DRIVER_INCLUDE})
 target_link_libraries(test_cca PRIVATE DRIVER_LIB Threads::Threads)
