@@ -5,6 +5,17 @@
 #include "cca_utils.h"
 #include "CC2520.h"
 
+static long diff_in_ns(struct timespec t1, struct timespec t2) {
+    struct timespec diff;
+    if (t2.tv_nsec - t1.tv_nsec < 0) {
+        diff.tv_sec = t2.tv_sec - t1.tv_sec - 1;
+        diff.tv_nsec = t2.tv_nsec - t1.tv_nsec + 1000000000;
+    } else {
+        diff.tv_sec = t2.tv_sec - t1.tv_sec;
+        diff.tv_nsec = t2.tv_nsec - t1.tv_nsec;
+    }
+    return (diff.tv_sec * 1000000000.0 + diff.tv_nsec);
+}
 
 void *start_cca_sampling(void *vargs) {
     auto *args = (cca_sampling_args_t *) vargs;
@@ -40,7 +51,7 @@ void *start_cca_sampling(void *vargs) {
 
 long get_whitespace_age_usec(cca_stat *stat) {
     pthread_mutex_lock(&stat->request_mutex);
-    long whitespace_start_tt = stat->white_window_start_tt.tv_nsec;
+    auto whitespace_start_tt = stat->white_window_start_tt;
     auto channel_status = stat->channel_status;
 
     if (channel_status == CCA_BUSY) {
@@ -51,8 +62,7 @@ long get_whitespace_age_usec(cca_stat *stat) {
     timespec now{};
     timespec_get(&now, TIME_UTC);
     pthread_mutex_unlock(&stat->request_mutex);
-    long res = (now.tv_nsec - whitespace_start_tt) / 1000;
-    return res < -1 ? 1 : res;
+    return diff_in_ns(whitespace_start_tt, now) / 1000;
 }
 
 
