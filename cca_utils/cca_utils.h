@@ -7,12 +7,26 @@
 
 #include <pthread.h>
 #include <unistd.h>
-#include <time.h>
+#include <ctime>
+#include <iostream>
 
-typedef struct {
+#define CCA_BUSY 0
+#define CCA_CLEAR 1
+
+struct cca_stat {
     double sample_freq;
-    time_t white_window_start_tt;
-} cca_stat;
+    unsigned int channel_status;    // 1: clear, 0: busy
+    struct timespec white_window_start_tt;
+    bool terminate_flag;
+
+    pthread_mutex_t request_mutex;
+    pthread_mutex_t terminate_mutex;
+
+    cca_stat() {
+        pthread_mutex_init(&request_mutex, nullptr);
+        pthread_mutex_init(&terminate_mutex, nullptr);
+    }
+};
 
 typedef struct {
     cca_stat *stat;
@@ -20,5 +34,19 @@ typedef struct {
 } cca_sampling_args_t;
 
 void *start_cca_sampling(void *vargs);
+
+// unit: usecond
+// return -1 if channel busy
+long get_whitespace_age_usec(cca_stat *stat);
+
+void stop_cca_sampling(cca_stat *stat);
+
+inline bool test_cancel(pthread_mutex_t *mutex, bool *val) {
+    bool ret = false;
+    pthread_mutex_lock(mutex);
+    ret = *val;
+    pthread_mutex_unlock(mutex);
+    return ret;
+}
 
 #endif //ZIGBEETESTBED_CCA_UTILS_H
