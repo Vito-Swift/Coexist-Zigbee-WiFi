@@ -21,25 +21,32 @@ void *start_cca_sampling(void *vargs) {
     auto *args = (cca_sampling_args_t *) vargs;
     args->stat->sample_freq = args->sample_freq;
 
+    // set termination flag to false
     pthread_mutex_lock(&args->stat->terminate_mutex);
     args->stat->terminate_flag = false;
     pthread_mutex_unlock(&args->stat->terminate_mutex);
+
+    // initialize 2520 device
     CC2520_Init();
     CC2520_Set_Channel(1, 11);
 
+    // initialize CCA value and timestamp
     pthread_mutex_lock(&args->stat->request_mutex);
     timespec_get(&(args->stat->white_window_start_tt), TIME_UTC);
-
     args->stat->channel_status = CC2520_Get_CCA(1);
     pthread_mutex_unlock(&args->stat->request_mutex);
 
+    // t = 1 / freq
     auto sample_interval = (unsigned int) ((1 / (double) args->stat->sample_freq) * 1000000);
 
     while (!test_cancel(&(args->stat->terminate_mutex), &(args->stat->terminate_flag))) {
+        // acquire mutex lock to modify CCA and timestamp
         pthread_mutex_lock(&args->stat->request_mutex);
+
         unsigned int prev_channel_status = args->stat->channel_status;
         args->stat->channel_status = CC2520_Get_CCA(1);
 
+        // channel status flipped from busy to clear
         if (prev_channel_status == CCA_BUSY && args->stat->channel_status == CCA_CLEAR) {
             timespec_get(&args->stat->white_window_start_tt, TIME_UTC);
         }
@@ -50,15 +57,17 @@ void *start_cca_sampling(void *vargs) {
 }
 
 long get_whitespace_age_usec(cca_stat *stat) {
+    // acquire mutex lock to prevent sampling thread asynchronously modifying CCA and timestamp
     pthread_mutex_lock(&stat->request_mutex);
     auto whitespace_start_tt = stat->white_window_start_tt;
     auto channel_status = stat->channel_status;
 
-    if (channel_status == CCA_BUSY) {
+    if (channel_status == CCA_BUSY) {   // channel busy, return -1
         pthread_mutex_unlock(&stat->request_mutex);
         return -1;
     }
 
+    // channel clear, get diff with now() and stored timestamp
     timespec now{};
     timespec_get(&now, TIME_UTC);
     pthread_mutex_unlock(&stat->request_mutex);

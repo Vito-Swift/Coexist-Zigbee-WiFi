@@ -23,7 +23,6 @@ int main() {
     }
 
     stop_cca_sampling(&ccaStat);
-    sleep(1);
 
     return 0;
 }
