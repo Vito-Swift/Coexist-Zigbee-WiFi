@@ -58,7 +58,7 @@ int main() {
 
     signal(SIGINT, interrupt_handler);
     time_t start_time = time(nullptr);
-    prog_metadata.output_filename = "cca_output-" + get_datetime_string(start_time) + ".txt";
+    prog_metadata.output_filename = "/home/pi/cca_output/cca_output-" + get_datetime_string(start_time) + ".txt";
     pthread_args_t args{.metadata = &prog_metadata};
     pthread_create(&prog_metadata.writer_thread, nullptr, CCA_reader, (void *) &args);
     pthread_create(&prog_metadata.writer_thread, nullptr, file_writer, (void *) &args);
