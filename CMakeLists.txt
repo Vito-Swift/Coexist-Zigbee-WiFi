@@ -44,3 +44,6 @@ target_link_libraries(test_driver PRIVATE DRIVER_LIB)
 
 add_executable(test_wise test_wise.c)
 target_link_libraries(test_wise PRIVATE WISE_LIB DRIVER_LIB)
+
+add_executable(auto_cca_collect auto_cca_collect.cc)
+target_link_libraries(auto_cca_collect PRIVATE DRIVER_LIB)
