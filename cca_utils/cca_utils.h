@@ -49,4 +49,15 @@ inline bool test_cancel(pthread_mutex_t *mutex, bool *val) {
     return ret;
 }
 
+#define detach_cca_sampling(ccaStat, sample_freq) \
+     {    \
+        cca_sampling_args_t args;   \
+        args.stat = &(ccaStat); \
+        args.sample_freq = (sample_freq); \
+        pthread_t sampling_thread; \
+        pthread_create(&sampling_thread, nullptr, start_cca_sampling, (void *) &args); \
+        pthread_detach(sampling_thread); \
+     }
+
+
 #endif //ZIGBEETESTBED_CCA_UTILS_H
