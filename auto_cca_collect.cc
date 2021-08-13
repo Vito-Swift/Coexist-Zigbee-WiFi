@@ -47,15 +47,13 @@ void interrupt_handler(int dummy) {
     prog_metadata.terminate_flag = true;
     prog_metadata.cca_queue.close();
     pthread_mutex_unlock(&prog_metadata.terminate_mutex);
-    sleep(1);
+    usleep(500000);
+    exit(0);
 }
 
 std::string get_datetime_string(time_t t);
 
 int main() {
-    CC2520_Init();
-    CC2520_Set_Channel(0, 11);
-
     signal(SIGINT, interrupt_handler);
     time_t start_time = time(nullptr);
     prog_metadata.output_filename = "/home/pi/cca_output/cca_output-" + get_datetime_string(start_time) + ".txt";
@@ -95,6 +93,7 @@ void *file_writer(void *vargs) {
         if (!metadata->cca_queue.dequeue(cca))  // queue is closed
             break;
         of << cca;
+        of.flush();
     }
     of.close();
 
@@ -104,6 +103,9 @@ void *file_writer(void *vargs) {
 void *CCA_reader(void *vargs) {
     auto metadata = ((pthread_args_t *) vargs)->metadata;
     auto sample_interval = (unsigned int) ((1 / (double) SAMPLE_FREQ) * 1000000);
+
+    CC2520_Init();
+    CC2520_Set_Channel(0, 11);
 
     while (!test_cancel(&metadata->terminate_mutex, &metadata->terminate_flag)) {
         metadata->cca_queue.enqueue(CC2520_Get_CCA(0));
