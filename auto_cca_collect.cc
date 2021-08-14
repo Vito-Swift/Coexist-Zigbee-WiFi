@@ -5,8 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <thread>
-#include <ctime>
-#include <signal.h>
+#include <csignal>
 
 #include "threadsafe_queue.hh"
 #include "CC2520.h"
@@ -28,11 +27,12 @@ struct program_metadata_t {
     }
 };
 
-program_metadata_t prog_metadata;
-
 typedef struct {
     program_metadata_t *metadata;
 } pthread_args_t;
+
+program_metadata_t prog_metadata;
+
 
 void *file_writer(void *vargs);
 
@@ -40,16 +40,7 @@ void *CCA_reader(void *vargs);
 
 bool test_cancel(pthread_mutex_t *mutex, bool *val);
 
-void interrupt_handler(int dummy) {
-    printf("Catch CTRL-C signal.\n");
-    printf("Terminate detached threads and exit.\n");
-    pthread_mutex_lock(&prog_metadata.terminate_mutex);
-    prog_metadata.terminate_flag = true;
-    prog_metadata.cca_queue.close();
-    pthread_mutex_unlock(&prog_metadata.terminate_mutex);
-    usleep(500000);
-    exit(0);
-}
+void interrupt_handler(int dummy);
 
 std::string get_datetime_string(time_t t);
 
@@ -120,6 +111,17 @@ std::string get_datetime_string(time_t t) {
     strftime(buf, sizeof(buf), "%Y-%m-%d-%H-%M-%S", timeinfo);
     std::string str(buf);
     return str;
+}
+
+void interrupt_handler(int dummy) {
+    printf("Catch CTRL-C signal.\n");
+    printf("Terminate detached threads and exit.\n");
+    pthread_mutex_lock(&prog_metadata.terminate_mutex);
+    prog_metadata.terminate_flag = true;
+    prog_metadata.cca_queue.close();
+    pthread_mutex_unlock(&prog_metadata.terminate_mutex);
+    usleep(500000);
+    exit(0);
 }
 
 bool test_cancel(pthread_mutex_t *mutex, bool *val) {
