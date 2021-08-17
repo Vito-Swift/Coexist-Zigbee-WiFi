@@ -11,7 +11,7 @@
 #include "CC2520.h"
 
 #define SAMPLE_TIME 600     // 10 minutes
-#define SAMPLE_FREQ 10      // 0.1 sec to get a sample
+#define SAMPLE_FREQ 1000    // 0.001 sec to get a sample
 
 struct program_metadata_t {
     pthread_t writer_thread;
