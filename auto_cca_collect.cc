@@ -49,25 +49,31 @@ int main() {
     signal(SIGINT, interrupt_handler);
 	
     for (int i = 11; i < 26; i += 2) {
-    time_t start_time = time(nullptr);
-    prog_metadata.output_filename = "/home/pi/cca_output/cca_output-" + get_datetime_string(start_time) + "-channel" + std::to_string(i) + ".txt";
-    prog_metadata.channel=i;
-    pthread_args_t args{.metadata = &prog_metadata};
-    pthread_create(&prog_metadata.writer_thread, nullptr, CCA_reader, (void *) &args);
-    pthread_create(&prog_metadata.writer_thread, nullptr, file_writer, (void *) &args);
-    pthread_detach(prog_metadata.reader_thread);
-    pthread_detach(prog_metadata.writer_thread);
-    
-    while (time(nullptr) < start_time + SAMPLE_TIME) {
-        usleep(100000); // sleep for 100 ms
-    }
+        if (i != 11) {
+            pthread_mutex_lock(&prog_metadata.terminate_mutex);
+            prog_metadata.terminate_flag = false;
+            prog_metadata.cca_queue.open();
+            pthread_mutex_unlock(&prog_metadata.terminate_mutex);
+        }
+        time_t start_time = time(nullptr);
+        prog_metadata.output_filename = "/home/pi/cca_output/cca_output-" + get_datetime_string(start_time) + "-channel" + std::to_string(i) + ".txt";
+        prog_metadata.channel=i;
+        pthread_args_t args{.metadata = &prog_metadata};
+        pthread_create(&prog_metadata.writer_thread, nullptr, CCA_reader, (void *) &args);
+        pthread_create(&prog_metadata.writer_thread, nullptr, file_writer, (void *) &args);
+        pthread_detach(prog_metadata.reader_thread);
+        pthread_detach(prog_metadata.writer_thread);
 
-    // terminate both threads
-    pthread_mutex_lock(&prog_metadata.terminate_mutex);
-    prog_metadata.terminate_flag = true;
-    prog_metadata.cca_queue.close();
-    pthread_mutex_unlock(&prog_metadata.terminate_mutex);
-    sleep(1);
+        while (time(nullptr) < start_time + SAMPLE_TIME) {
+            usleep(100000); // sleep for 100 ms
+        }
+
+        // terminate both threads
+        pthread_mutex_lock(&prog_metadata.terminate_mutex);
+        prog_metadata.terminate_flag = true;
+        prog_metadata.cca_queue.close();
+        pthread_mutex_unlock(&prog_metadata.terminate_mutex);
+        sleep(1);
     }
 
     return EXIT_SUCCESS;
