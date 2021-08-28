@@ -42,6 +42,12 @@ public:
         c.notify_all();
     }
 
+    void open() noexcept {
+        std::lock_guard<std::mutex> lock(m);
+        is_close = false;
+        c.notify_all();
+    }
+
 private:
     std::queue<T> q;
     mutable std::mutex m;
