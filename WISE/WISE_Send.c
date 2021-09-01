@@ -14,17 +14,17 @@ unsigned char get_subframe_size() {
     return 0;
 }
 
-void WISE_Send(unsigned char* buf, unsigned char buf_len, CC2520_addr_t *addr) {
+void WISE_Send(struct cca_stat *ccaStat, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr) {
 //    Normal zigbee TX process
     unsigned char mac_hdr[129] = {0};
     unsigned char hdr_len = 11;
-    IEEE802154_Fill_Data_Frame_Control(mac_hdr+1,
+    IEEE802154_Fill_Data_Frame_Control(mac_hdr + 1,
                                        IEEE802154_NO_FRAME_PENDING,
                                        IEEE802154_NO_ACK,
                                        IEEE802154_ADDR_MODE_SHORT_ADDR,
                                        IEEE802154_ADDR_MODE_SHORT_ADDR);
-    IEEE802154_Fill_Sequence_Num(mac_hdr+1, 0);
-    IEEE802154_Fill_Data_Frame_Short_Addr(mac_hdr+1,
+    IEEE802154_Fill_Sequence_Num(mac_hdr + 1, 0);
+    IEEE802154_Fill_Data_Frame_Short_Addr(mac_hdr + 1,
                                           addr->dst_pan_id,
                                           addr->dst_addr,
                                           addr->src_pan_id,
@@ -53,20 +53,20 @@ void WISE_Send(unsigned char* buf, unsigned char buf_len, CC2520_addr_t *addr) {
     // payload sub-frame
     unsigned char total_size = 0;
     unsigned char sub_frame[129];
-    unsigned char* payload = WISE_Get_Payload(sub_frame);
+    unsigned char *payload = WISE_Get_Payload(sub_frame);
     while (1) {
         size = get_subframe_size();
         if (size <= 0) continue;
-        if (total_size+size >= buf_len) {
+        if (total_size + size >= buf_len) {
             size = buf_len - total_size;
-            memcpy(payload, buf+total_size, size);
+            memcpy(payload, buf + total_size, size);
             WISE_Fill_Hdr(sub_frame, session_id, 0, 1);
             WISE_Fill_PHY_Frame_Len(sub_frame, size);
             send_count = WISE_Get_SPI_Payload_Len(sub_frame, size);
             CC2520_Send_Packet_Blocking(TX_DEV, sub_frame, send_count);
             break;
         }
-        memcpy(payload, buf+total_size, size);
+        memcpy(payload, buf + total_size, size);
         WISE_Fill_Hdr(sub_frame, session_id, 0, 0);
         WISE_Fill_PHY_Frame_Len(sub_frame, size);
         send_count = WISE_Get_SPI_Payload_Len(sub_frame, size);

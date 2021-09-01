@@ -9,10 +9,15 @@
 #include <mutex>
 #include <condition_variable>
 
+#define VERBOSE 1
+
 template<class T>
 class Queue {
 public:
-    Queue() : q(), m(), c() { is_close = false; }
+    Queue() : q(), m(), c() {
+        is_close = false;
+        size = INT32_MAX;
+    }
 
     ~Queue() {}
 
@@ -20,6 +25,9 @@ public:
         std::lock_guard<std::mutex> lock(m);
         if (is_close)
             throw std::runtime_error("try to push into a closed queue!");
+        if (q.size() > size) {
+            q.pop();
+        }
         q.push(t);
         c.notify_one();
     }
@@ -48,8 +56,13 @@ public:
         c.notify_all();
     }
 
+    void set_size(const unsigned int &s) {
+        size = s;
+    }
+
 private:
     std::queue<T> q;
+    unsigned int size;
     mutable std::mutex m;
     std::condition_variable c;
     bool is_close;

@@ -9,28 +9,50 @@
 #include <unistd.h>
 #include <ctime>
 #include <iostream>
+#include <vector>
 
 #define CCA_BUSY 0
 #define CCA_CLEAR 1
 
 struct cca_stat {
+    // collect 1 / sample_freq of samples in 1 sec
     double sample_freq;
-    unsigned int channel_status;    // 1: clear, 0: busy
-    struct timespec white_window_start_tt;
-    bool terminate_flag;
 
+    // auxiliary variable to state the current CSI; 1: clear, 0: busy
+    unsigned int channel_status;
+
+    // auxiliary timestamp to record the start time of white space
+    struct timespec white_window_start_tt;
+
+    // white space history (the vector size should be
+    // equal to the sample_freq * window span(s))
+    std::vector<unsigned int> cca_window;
+    pthread_mutex_t cca_window_mutex;
+    unsigned int cca_window_size;
+
+    // preset appropriate T value to pass the K-S test
+    unsigned int window_time_span;
+
+    // statistic variable to record the average lifetime of white space
+    // within the window_time_span duration
+    float average_white_space_life_time;
+
+    // pthread variables to control the termination of sampling threads
+    bool terminate_flag;
     pthread_mutex_t request_mutex;
     pthread_mutex_t terminate_mutex;
 
     cca_stat() {
         pthread_mutex_init(&request_mutex, nullptr);
         pthread_mutex_init(&terminate_mutex, nullptr);
+        pthread_mutex_init(&cca_window_mutex, nullptr);
     }
 };
 
 typedef struct {
     cca_stat *stat;
     double sample_freq;
+    unsigned int window_time_span;
 } cca_sampling_args_t;
 
 void *start_cca_sampling(void *vargs);
@@ -49,10 +71,11 @@ inline bool test_cancel(pthread_mutex_t *mutex, bool *val) {
     return ret;
 }
 
-#define detach_cca_sampling(ccaStat, sample_freq) \
+#define detach_cca_sampling(ccaStat, sample_freq, window_time_span) \
      {    \
         cca_sampling_args_t args;   \
-        args.stat = &(ccaStat); \
+        args.stat = &(ccaStat);   \
+        args.window_time_span = (window_time_space)                 \
         args.sample_freq = (sample_freq); \
         pthread_t sampling_thread; \
         pthread_create(&sampling_thread, nullptr, start_cca_sampling, (void *) &args); \
