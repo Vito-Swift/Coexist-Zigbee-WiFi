@@ -89,9 +89,10 @@ float get_avg_whitespace_age_in_window(cca_stat *stat) {
         if (slot == CCA_CLEAR)
             total_white_window_time += 1;
         if (slot == CCA_CLEAR && !in_white_window) {
-            in_white_window = true;
             white_window_count++;
-        } else if (slot == CCA_BUSY && in_white_window) {
+            in_white_window = true;
+        }
+        if (slot == CCA_BUSY && in_white_window) {
             in_white_window = false;
         }
     }
