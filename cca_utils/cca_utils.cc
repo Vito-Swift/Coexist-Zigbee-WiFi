@@ -98,7 +98,7 @@ float get_avg_whitespace_age_in_window(cca_stat *stat) {
     }
     pthread_mutex_unlock(&stat->request_mutex);
     return white_window_count != 0 ?
-           ((float) total_white_window_time / (float) white_window_count) : 0;
+           1000 * ((float) total_white_window_time / ((float) stat->sample_freq * (float) white_window_count)) : 0;
 }
 
 void stop_cca_sampling(cca_stat *stat) {

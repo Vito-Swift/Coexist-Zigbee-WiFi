@@ -61,6 +61,8 @@ void *start_cca_sampling(void *vargs);
 // return -1 if channel busy
 long get_whitespace_age_usec(cca_stat *stat);
 
+float get_avg_whitespace_age_in_window(cca_stat *stat);
+
 void stop_cca_sampling(cca_stat *stat);
 
 inline bool test_cancel(pthread_mutex_t *mutex, bool *val) {
@@ -75,7 +77,7 @@ inline bool test_cancel(pthread_mutex_t *mutex, bool *val) {
      {    \
         cca_sampling_args_t args;   \
         args.stat = &(ccaStat);   \
-        args.window_time_span = (window_time_space)                 \
+        args.window_time_span = (window_time_space);                 \
         args.sample_freq = (sample_freq); \
         pthread_t sampling_thread; \
         pthread_create(&sampling_thread, nullptr, start_cca_sampling, (void *) &args); \

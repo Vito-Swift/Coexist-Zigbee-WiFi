@@ -47,3 +47,7 @@ target_link_libraries(test_wise PRIVATE WISE_LIB DRIVER_LIB)
 
 add_executable(auto_cca_collect auto_cca_collect.cc)
 target_link_libraries(auto_cca_collect PRIVATE DRIVER_LIB)
+
+add_executable(testCCAWhiteSpaceAge testCCAWhiteSpaceAge.cc ${DRIVER_SRCS} ${DRIVER_INCLUDE})
+target_link_libraries(testCCAWhiteSpaceAge DRIVER_LIB Threads::Threads ${WIRINGPI_LIBRARIES})
+target_include_directories(testCCAWhiteSpaceAge PRIVATE pthread)

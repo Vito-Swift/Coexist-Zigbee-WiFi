@@ -14,7 +14,8 @@ int main() {
     detach_cca_sampling(ccaStat, sample_freq, window_time_span);  // 1000 milli-sec to get a sample
 
     for (int i = 0; i < 16; i++) {
-        printf("Get whitespace age time %d : \t %ld\n", i, get_whitespace_age_usec(&ccaStat));
+        printf("Get whitespace age time %d : \t %ld\t", i, get_whitespace_age_usec(&ccaStat));
+        printf("Get avg white space age: %f \n", get_avg_whitespace_age_in_window(&ccaStat));
         usleep(500000); // 0.5 sec
     }
 
