@@ -21,8 +21,7 @@ void *start_cca_sampling(void *vargs) {
     auto *args = (cca_sampling_args_t *) vargs;
     args->stat->sample_freq = args->sample_freq;
     args->stat->window_time_span = args->window_time_span;
-    args->stat->cca_window_size = args->window_time_span / (1 / args->sample_freq);
-
+    args->stat->cca_window_size = args->window_time_span / (1000 / args->sample_freq);
     // set termination flag to false
     pthread_mutex_lock(&args->stat->terminate_mutex);
     args->stat->terminate_flag = false;

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/testCCAWhiteSpaceAge.dir/testCCAWhiteSpaceAge.cc.o CMakeFiles/testCCAWhiteSpaceAge.dir/driver/CC2520.c.o CMakeFiles/testCCAWhiteSpaceAge.dir/driver/CC2520_HW.c.o CMakeFiles/testCCAWhiteSpaceAge.dir/cca_utils/cca_utils.cc.o  -o testCCAWhiteSpaceAge  libDRIVER_LIB.a /usr/lib/libwiringPi.so -pthread 
