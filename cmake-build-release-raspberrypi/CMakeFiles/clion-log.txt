@@ -1,5 +1,0 @@
-/usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /tmp/tmp.XKlURGbl6R
-/tmp/tmp.XKlURGbl6R
--- Configuring done
--- Generating done
--- Build files have been written to: /tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi

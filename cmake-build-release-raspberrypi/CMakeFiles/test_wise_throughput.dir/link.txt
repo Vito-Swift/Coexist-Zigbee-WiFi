@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/test_wise_throughput.dir/test_wise_throughput.cc.o CMakeFiles/test_wise_throughput.dir/driver/CC2520.cc.o CMakeFiles/test_wise_throughput.dir/driver/CC2520_HW.cc.o CMakeFiles/test_wise_throughput.dir/cca_utils/cca_utils.cc.o  -o test_wise_throughput  libDRIVER_LIB.a /usr/lib/libwiringPi.so -pthread 
