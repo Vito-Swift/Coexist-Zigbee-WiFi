@@ -6,7 +6,7 @@
 #include <string.h>
 #include <time.h>
 
-unsigned char get_subframe_size() {
+unsigned char get_subframe_size(struct WISE_Params *params, unsigned char buf_len) {
     if (CC2520_Get_CCA(TX_DEV)) {
         return 20;
     }

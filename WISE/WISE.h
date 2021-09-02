@@ -11,9 +11,28 @@
 #define TX_DEV 0
 #define RX_DEV 1
 
-#define WISE_ALGO_LAMBDA
+// max channel rate of IEEE802154 is 250kbps
+const unsigned int channel_rate = 250;
+typedef struct {
+    struct cca_stat ccaStat;
+    float presto_lambda;     // mean in the Pareto model of the white space
+    unsigned int T;          //  preset appropriate T value to pass the K-S test
+    unsigned int alpha;
+} WISE_Params;
 
-void WISE_Send(struct cca_stat *ccaStat, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr);
+inline void WISE_Init(struct WISE_Params *params,
+                      unsigned int T,
+                      unsigned int alpha,
+                      unsigned int sample_freq) {
+    params->alpha = alpha;
+    detach_cca_sampling(params->ccaStat, sample_freq, T);
+}
+
+inline void WISE_Exit(struct WISE_Params *params) {
+    stop_cca_sampling(&params->ccaStat);
+}
+
+void WISE_Send(struct WISE_Params *params, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr);
 
 unsigned char WISE_Recv(unsigned char *buf);
 
