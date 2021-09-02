@@ -7,7 +7,7 @@
 
 #include <pthread.h>
 #include <unistd.h>
-#include <ctime>
+#include <time.h>
 #include <iostream>
 #include <vector>
 
@@ -73,14 +73,14 @@ inline bool test_cancel(pthread_mutex_t *mutex, bool *val) {
     return ret;
 }
 
-#define detach_cca_sampling(ccaStat, sample_freq, window_time_span) \
+#define detach_cca_sampling(ccaStat, args_sample_freq, args_window_time_span) \
      {    \
         cca_sampling_args_t args;   \
         args.stat = &(ccaStat);   \
-        args.window_time_span = (window_time_space);                 \
-        args.sample_freq = (sample_freq); \
+        args.window_time_span = (args_window_time_span);                 \
+        args.sample_freq = (args_sample_freq); \
         pthread_t sampling_thread; \
-        pthread_create(&sampling_thread, nullptr, start_cca_sampling, (void *) &args); \
+        pthread_create(&sampling_thread, NULL, start_cca_sampling, (void *) &args); \
         pthread_detach(sampling_thread); \
      }
 

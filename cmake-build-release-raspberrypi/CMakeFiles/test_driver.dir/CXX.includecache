@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../driver/CC2520.h
+stdio.h
+-
+stdlib.h
+-
+errno.h
+-
+sys/time.h
+-
+time.h
+-
+unistd.h
+-
+CC2520_HW.h
+../driver/CC2520_HW.h
+
+../driver/CC2520_HW.h
+stdio.h
+-
+errno.h
+-
+wiringPi.h
+-
+wiringPiSPI.h
+-
+unistd.h
+-
+
+/tmp/tmp.XKlURGbl6R/test_driver.cc
+stdio.h
+-
+CC2520.h
+/tmp/tmp.XKlURGbl6R/CC2520.h
+

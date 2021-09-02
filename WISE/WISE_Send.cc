@@ -5,16 +5,24 @@
 #include <WISE.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 
-unsigned char get_subframe_size(struct WISE_Params *params, unsigned char buf_len) {
-    if (CC2520_Get_CCA(TX_DEV)) {
-        return 20;
+unsigned char get_subframe_size(WISE_Params *params, unsigned char buf_len) {
+    if (CC2520_Get_CCA(TX_DEV))
+    {
+        // unit in ms
+        float avg_whitespace_age = get_avg_whitespace_age_in_window(&params->ccaStat);
+        // unit in ms
+        float current_whitespace_age = get_whitespace_age_usec(&params->ccaStat) * 1000;
+        int opt_subframe_size =
+            floor(current_whitespace_age * channel_rate *
+                ((pow(1 - params->T, -1 * (avg_whitespace_age - params->alpha) / avg_whitespace_age)) - 1));
+        return opt_subframe_size > buf_len ? buf_len : opt_subframe_size;
     }
-    delay(10);
     return 0;
 }
 
-void WISE_Send(struct cca_stat *ccaStat, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr) {
+void WISE_Send(WISE_Params *params, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr) {
 //    Normal zigbee TX process
     unsigned char mac_hdr[129] = {0};
     unsigned char hdr_len = 11;
@@ -41,9 +49,11 @@ void WISE_Send(struct cca_stat *ccaStat, unsigned char *buf, unsigned char buf_l
     WISE_Fill_Hdr(mac_hdr, session_id, 1, 0);
     WISE_Fill_PHY_Frame_Len(mac_hdr, hdr_len);
     send_count = WISE_Get_SPI_Payload_Len(mac_hdr, hdr_len);
-    while (1) {
-        size = get_subframe_size();
-        if (size >= hdr_len) {
+    while (1)
+    {
+        size = get_subframe_size(params, buf_len);
+        if (size >= hdr_len)
+        {
             CC2520_Send_Packet_Blocking(TX_DEV, mac_hdr, send_count);
 //            printf("[DEBUG] send srf\n");
             break;
@@ -54,10 +64,12 @@ void WISE_Send(struct cca_stat *ccaStat, unsigned char *buf, unsigned char buf_l
     unsigned char total_size = 0;
     unsigned char sub_frame[129];
     unsigned char *payload = WISE_Get_Payload(sub_frame);
-    while (1) {
-        size = get_subframe_size();
+    while (1)
+    {
+        size = get_subframe_size(params, buf_len);
         if (size <= 0) continue;
-        if (total_size + size >= buf_len) {
+        if (total_size + size >= buf_len)
+        {
             size = buf_len - total_size;
             memcpy(payload, buf + total_size, size);
             WISE_Fill_Hdr(sub_frame, session_id, 0, 1);

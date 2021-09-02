@@ -12,15 +12,16 @@
 #define RX_DEV 1
 
 // max channel rate of IEEE802154 is 250kbps
-const unsigned int channel_rate = 250;
+// unit of variable is in bytes per milli-second
+const unsigned int channel_rate = (250 * 1024) / (1000 * 8);
 typedef struct {
-    struct cca_stat ccaStat;
-    float presto_lambda;     // mean in the Pareto model of the white space
-    unsigned int T;          //  preset appropriate T value to pass the K-S test
-    unsigned int alpha;
+  struct cca_stat ccaStat;
+  float presto_lambda;     // mean in the Pareto model of the white space (unit in ms)
+  unsigned int T;          // preset appropriate T value to pass the K-S test (unit in ms)
+  unsigned int alpha;      // grain of Pareto model, unit in ms
 } WISE_Params;
 
-inline void WISE_Init(struct WISE_Params *params,
+inline void WISE_Init(WISE_Params *params,
                       unsigned int T,
                       unsigned int alpha,
                       unsigned int sample_freq) {
@@ -28,11 +29,11 @@ inline void WISE_Init(struct WISE_Params *params,
     detach_cca_sampling(params->ccaStat, sample_freq, T);
 }
 
-inline void WISE_Exit(struct WISE_Params *params) {
+inline void WISE_Exit(WISE_Params *params) {
     stop_cca_sampling(&params->ccaStat);
 }
 
-void WISE_Send(struct WISE_Params *params, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr);
+void WISE_Send(WISE_Params *params, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr);
 
 unsigned char WISE_Recv(unsigned char *buf);
 

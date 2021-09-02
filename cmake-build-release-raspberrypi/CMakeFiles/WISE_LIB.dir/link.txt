@@ -1,0 +1,2 @@
+/usr/bin/ar qc libWISE_LIB.a  CMakeFiles/WISE_LIB.dir/WISE/WISE_Send.cc.o CMakeFiles/WISE_LIB.dir/WISE/WISE_Recv.cc.o CMakeFiles/WISE_LIB.dir/WISE/Utils.cc.o
+/usr/bin/ranlib libWISE_LIB.a

@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ZigBeeTestbed"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WISE_LIB">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/libWISE_LIB.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 WISE_LIB"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="WISE_LIB/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/libWISE_LIB.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 WISE_LIB/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testCCAWhiteSpaceAge">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/testCCAWhiteSpaceAge" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 testCCAWhiteSpaceAge"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testCCAWhiteSpaceAge/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/testCCAWhiteSpaceAge" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 testCCAWhiteSpaceAge/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DRIVER_LIB">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/libDRIVER_LIB.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 DRIVER_LIB"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DRIVER_LIB/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/libDRIVER_LIB.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 DRIVER_LIB/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_wise_throughput">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_wise_throughput" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_wise_throughput"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_wise_throughput/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_wise_throughput" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_wise_throughput/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_cca">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_cca" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_cca"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_cca/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_cca" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_cca/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="auto_cca_collect">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/auto_cca_collect" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 auto_cca_collect"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="auto_cca_collect/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/auto_cca_collect" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 auto_cca_collect/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_wise">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_wise" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_wise"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_wise/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_wise" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_wise/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_cca_sample">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_cca_sample" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_cca_sample"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_cca_sample/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_cca_sample" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/pthread"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_cca_sample/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_driver">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_driver" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_driver"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_driver/fast">
+				<Option output="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/test_driver" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.XKlURGbl6R/driver"/>
+					<Add directory="/tmp/tmp.XKlURGbl6R/WISE"/>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 test_driver/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.XKlURGbl6R/cmake-build-release-raspberrypi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/WISE/Utils.cc">
+			<Option target="WISE_LIB"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/WISE/WISE.h">
+			<Option target="WISE_LIB"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/WISE/WISE_Recv.cc">
+			<Option target="WISE_LIB"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/WISE/WISE_Send.cc">
+			<Option target="WISE_LIB"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/auto_cca_collect.cc">
+			<Option target="auto_cca_collect"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/cca_utils/cca_utils.cc">
+			<Option target="testCCAWhiteSpaceAge"/>
+			<Option target="DRIVER_LIB"/>
+			<Option target="test_wise_throughput"/>
+			<Option target="test_cca"/>
+			<Option target="test_cca_sample"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/cca_utils/cca_utils.h">
+			<Option target="testCCAWhiteSpaceAge"/>
+			<Option target="DRIVER_LIB"/>
+			<Option target="test_wise_throughput"/>
+			<Option target="test_cca"/>
+			<Option target="test_cca_sample"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/driver/CC2520.cc">
+			<Option target="testCCAWhiteSpaceAge"/>
+			<Option target="DRIVER_LIB"/>
+			<Option target="test_wise_throughput"/>
+			<Option target="test_cca"/>
+			<Option target="test_cca_sample"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/driver/CC2520.h">
+			<Option target="testCCAWhiteSpaceAge"/>
+			<Option target="DRIVER_LIB"/>
+			<Option target="test_wise_throughput"/>
+			<Option target="test_cca"/>
+			<Option target="test_cca_sample"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/driver/CC2520_HW.cc">
+			<Option target="testCCAWhiteSpaceAge"/>
+			<Option target="DRIVER_LIB"/>
+			<Option target="test_wise_throughput"/>
+			<Option target="test_cca"/>
+			<Option target="test_cca_sample"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/driver/CC2520_HW.h">
+			<Option target="testCCAWhiteSpaceAge"/>
+			<Option target="DRIVER_LIB"/>
+			<Option target="test_wise_throughput"/>
+			<Option target="test_cca"/>
+			<Option target="test_cca_sample"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/testCCAWhiteSpaceAge.cc">
+			<Option target="testCCAWhiteSpaceAge"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/test_cca.cc">
+			<Option target="test_cca"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/test_cca_sample.cc">
+			<Option target="test_cca_sample"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/test_driver.cc">
+			<Option target="test_driver"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/test_wise.cc">
+			<Option target="test_wise"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/test_wise_throughput.cc">
+			<Option target="test_wise_throughput"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XKlURGbl6R/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

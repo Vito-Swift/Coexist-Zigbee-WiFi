@@ -10,7 +10,7 @@
 int main() {
     cca_stat ccaStat;
     double sample_freq = 10;
-    int window_time_space = 5;
+    int window_time_span = 5;
     detach_cca_sampling(ccaStat, sample_freq, window_time_span);  // 1000 milli-sec to get a sample
 
     for (int i = 0; i < 16; i++) {
