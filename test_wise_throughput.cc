@@ -112,13 +112,8 @@ int main(int argc, char *argv[]) {
     if (argv[1][0] == '0')
     {
         printf("========Benchmark sender program========\n");
-<<<<<<< Updated upstream
         CC2520_Set_Channel(0, 11);
         CC2520_Set_TX_Power(0, -7);
-=======
-        CC2520_Set_Channel(0, -7);
-        CC2520_Set_TX_Power(0, 5);
->>>>>>> Stashed changes
 
         time_t start_time = time(NULL);
         if (argv[2][0] == '0')
