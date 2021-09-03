@@ -1,22 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
-Change Dir: /home/pi/Coexist-Zigbee-WiFi/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Coexist-Zigbee-Wifi/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_cb46a/fast && /usr/bin/make -f CMakeFiles/cmTC_cb46a.dir/build.make CMakeFiles/cmTC_cb46a.dir/build
-make[1]: Entering directory '/home/pi/Coexist-Zigbee-WiFi/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_cb46a.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_cb46a.dir/src.c.o   -c /home/pi/Coexist-Zigbee-WiFi/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_cb46a
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb46a.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_cb46a.dir/src.c.o  -o cmTC_cb46a 
-/usr/bin/ld: CMakeFiles/cmTC_cb46a.dir/src.c.o: in function `main':
+Run Build Command(s):/usr/bin/make cmTC_653fd/fast && /usr/bin/make -f CMakeFiles/cmTC_653fd.dir/build.make CMakeFiles/cmTC_653fd.dir/build
+make[1]: Entering directory '/home/pi/Coexist-Zigbee-Wifi/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_653fd.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_653fd.dir/src.c.o   -c /home/pi/Coexist-Zigbee-Wifi/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_653fd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_653fd.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_653fd.dir/src.c.o  -o cmTC_653fd 
+/usr/bin/ld: CMakeFiles/cmTC_653fd.dir/src.c.o: in function `main':
 src.c:(.text+0x40): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x4c): undefined reference to `pthread_detach'
-/usr/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_cancel'
-/usr/bin/ld: src.c:(.text+0x68): undefined reference to `pthread_join'
+/usr/bin/ld: src.c:(.text+0x5c): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_cb46a.dir/build.make:104: cmTC_cb46a] Error 1
-make[1]: Leaving directory '/home/pi/Coexist-Zigbee-WiFi/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:138: cmTC_cb46a/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_653fd.dir/build.make:87: cmTC_653fd] Error 1
+make[1]: Leaving directory '/home/pi/Coexist-Zigbee-Wifi/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_653fd/fast] Error 2
 
 
 Source file was:
@@ -32,7 +31,6 @@ int main(void)
   pthread_t thread;
   pthread_create(&thread, NULL, test_func, NULL);
   pthread_detach(thread);
-  pthread_cancel(thread);
   pthread_join(thread, NULL);
   pthread_atfork(NULL, NULL, NULL);
   pthread_exit(NULL);

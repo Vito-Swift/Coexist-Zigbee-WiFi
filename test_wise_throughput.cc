@@ -39,6 +39,7 @@ void tx() {
                                        IEEE802154_NO_ACK,
                                        IEEE802154_ADDR_MODE_SHORT_ADDR,
                                        IEEE802154_ADDR_MODE_SHORT_ADDR);
+    while (CC2520_Get_CCA(0) != 1);
     IEEE802154_Fill_Sequence_Num(tx_buf, 0);
     IEEE802154_Fill_Data_Frame_Short_Addr(tx_buf, 11110, 22220, 33333, 44444);
     unsigned char *buf = IEEE802154_Data_Frame_Get_Payload_Pointer(tx_buf);
@@ -111,8 +112,13 @@ int main(int argc, char *argv[]) {
     if (argv[1][0] == '0')
     {
         printf("========Benchmark sender program========\n");
+<<<<<<< Updated upstream
         CC2520_Set_Channel(0, 11);
         CC2520_Set_TX_Power(0, -7);
+=======
+        CC2520_Set_Channel(0, -7);
+        CC2520_Set_TX_Power(0, 5);
+>>>>>>> Stashed changes
 
         time_t start_time = time(NULL);
         if (argv[2][0] == '0')

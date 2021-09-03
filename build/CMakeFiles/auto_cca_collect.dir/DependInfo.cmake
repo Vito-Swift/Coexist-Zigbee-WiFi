@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/Coexist-Zigbee-WiFi/auto_cca_collect.cc" "/home/pi/Coexist-Zigbee-WiFi/build/CMakeFiles/auto_cca_collect.dir/auto_cca_collect.cc.o"
+  "/home/pi/Coexist-Zigbee-Wifi/auto_cca_collect.cc" "/home/pi/Coexist-Zigbee-Wifi/build/CMakeFiles/auto_cca_collect.dir/auto_cca_collect.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,7 +16,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/pi/Coexist-Zigbee-WiFi/build/CMakeFiles/DRIVER_LIB.dir/DependInfo.cmake"
+  "/home/pi/Coexist-Zigbee-Wifi/build/CMakeFiles/DRIVER_LIB.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -1,12 +1,12 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/WISE_LIB.dir/WISE/Utils.c.o"
-  "CMakeFiles/WISE_LIB.dir/WISE/WISE_Recv.c.o"
-  "CMakeFiles/WISE_LIB.dir/WISE/WISE_Send.c.o"
+  "CMakeFiles/WISE_LIB.dir/WISE/Utils.cc.o"
+  "CMakeFiles/WISE_LIB.dir/WISE/WISE_Recv.cc.o"
+  "CMakeFiles/WISE_LIB.dir/WISE/WISE_Send.cc.o"
   "libWISE_LIB.a"
   "libWISE_LIB.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang C)
+foreach(lang CXX)
   include(CMakeFiles/WISE_LIB.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

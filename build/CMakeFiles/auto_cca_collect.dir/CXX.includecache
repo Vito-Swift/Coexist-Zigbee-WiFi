@@ -34,7 +34,7 @@ wiringPiSPI.h
 unistd.h
 -
 
-/home/pi/Coexist-Zigbee-WiFi/auto_cca_collect.cc
+/home/pi/Coexist-Zigbee-Wifi/auto_cca_collect.cc
 iostream
 -
 fstream
@@ -44,11 +44,11 @@ thread
 csignal
 -
 threadsafe_queue.hh
-/home/pi/Coexist-Zigbee-WiFi/threadsafe_queue.hh
+/home/pi/Coexist-Zigbee-Wifi/threadsafe_queue.hh
 CC2520.h
-/home/pi/Coexist-Zigbee-WiFi/CC2520.h
+/home/pi/Coexist-Zigbee-Wifi/CC2520.h
 
-/home/pi/Coexist-Zigbee-WiFi/threadsafe_queue.hh
+/home/pi/Coexist-Zigbee-Wifi/threadsafe_queue.hh
 queue
 -
 mutex
