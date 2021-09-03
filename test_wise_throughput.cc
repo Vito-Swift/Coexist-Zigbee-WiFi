@@ -52,10 +52,34 @@ void tx() {
 }
 
 unsigned int rx() {
-    unsigned char rx_buf[129];
+    unsigned char rx_buf[129] = {0};
     unsigned char *buf;
-    while (CC2520_Receive_Packet_Pending(1) == 0);
+    unsigned int exc_word;
+    while (CC2520_Receive_Packet_Pending(1) == 0) {
+        exc_word = CC2520_Read_Exception(1);
+			if(CC2520_Decode_Exception(exc_word, CC2520_EXC_RX_OVERFLOW)){
+				//printf("rx overflow\n");
+				CC2520_Instruction(1, CC2520_INS_SFLUSHRX);
+				CC2520_Instruction(1, CC2520_INS_SRFOFF);
+				CC2520_Instruction(1, CC2520_INS_SRXON);
+				CC2520_Clear_Exception(1, CC2520_EXC_RX_OVERFLOW);
+			    return 0;
+            }
+    }
+    if(CC2520_Decode_Exception(exc_word, CC2520_EXC_RX_OVERFLOW)){
+                //printf("rx overflow\n");
+                CC2520_Instruction(1, CC2520_INS_SFLUSHRX);
+                CC2520_Instruction(1, CC2520_INS_SRFOFF);
+                CC2520_Instruction(1, CC2520_INS_SRXON);
+                CC2520_Clear_Exception(1, CC2520_EXC_RX_OVERFLOW);
+                return 0;
+    }
     int recv_count = CC2520_Receive_Packet_Non_Blocking(1, rx_buf);
+    int len = IEEE802154_Get_Data_Frame_Payload_Len(rx_buf);
+    if (len < 60)
+        return 0;
+    //if (!CC2520_CRC_Correct(rx_buf, recv_count))
+    //    return 0;
     buf = IEEE802154_Data_Frame_Get_Payload_Pointer(rx_buf);
     for (int i = 0; i < 40; i++)
     {
@@ -88,7 +112,7 @@ int main(int argc, char *argv[]) {
     {
         printf("========Benchmark sender program========\n");
         CC2520_Set_Channel(0, 11);
-        CC2520_Set_TX_Power(0, 5);
+        CC2520_Set_TX_Power(0, -7);
 
         time_t start_time = time(NULL);
         if (argv[2][0] == '0')
@@ -117,7 +141,7 @@ int main(int argc, char *argv[]) {
         printf("========Benchmark receiver program========\n");
         time_t start_time = time(NULL);
         CC2520_Set_Channel(1, 11);
-        CC2520_Set_TX_Power(1, 5);
+        CC2520_Set_TX_Power(1, -7);
 
         if (argv[2][0] == '0')
         {
@@ -126,6 +150,7 @@ int main(int argc, char *argv[]) {
             while (time(NULL) - start_time + 2 < testing_duration)
             {
                 recv_count += rx();
+                usleep(10);
             }
             printf("Recv finished\n");
             printf("Statistics: \n");
