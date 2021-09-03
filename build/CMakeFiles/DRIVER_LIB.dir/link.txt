@@ -1,2 +1,0 @@
-/usr/bin/ar qc libDRIVER_LIB.a  CMakeFiles/DRIVER_LIB.dir/driver/CC2520.cc.o CMakeFiles/DRIVER_LIB.dir/driver/CC2520_HW.cc.o CMakeFiles/DRIVER_LIB.dir/cca_utils/cca_utils.cc.o
-/usr/bin/ranlib libDRIVER_LIB.a
