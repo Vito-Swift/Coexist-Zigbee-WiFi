@@ -13,24 +13,30 @@ unsigned int packet_per_sec;
 unsigned int sleep_in_us;
 unsigned int testing_duration = 20;     // lasting 20 seconds to benchmark the tx/rx
 
-//void WISE_tx(WISE_Params *params) {
-//    CC2520_addr_t addr;
-//    unsigned char tx_buf[50] = {0};
-//    addr.dst_pan_id = 11110;
-//    addr.dst_addr = 22220;
-//    addr.src_pan_id = 33333;
-//    addr.src_addr = 44444;
-//    for (int i = 0; i < 40; i++)
-//    {
-//        tx_buf[i] = '0' + (i % 10);
-//    }
-//    WISE_Send(params, tx_buf, 40, &addr);
-//}
-//
-//unsigned int WISE_rx(unsigned char *rx_buf) {
-//    int len = WISE_Recv(rx_buf);
-//    return len;
-//}
+void WISE_tx(WISE_Params *params) {
+    CC2520_addr_t addr;
+    unsigned char tx_buf[129] = {0};
+    addr.dst_pan_id = 11110;
+    addr.dst_addr = 22220;
+    addr.src_pan_id = 33333;
+    addr.src_addr = 44444;
+    for (int i = 0; i < 40; i++)
+    {
+        tx_buf[i] = '0' + (i % 10);
+    }
+    WISE_Send(params, tx_buf, 60, &addr);
+}
+
+unsigned int WISE_rx() {
+    unsigned char rx_buf[129] = {0};
+    int len = WISE_Recv(rx_buf);
+    for (int i = 0; i < 40; i++)
+    {
+        if (rx_buf[i] != '0' + (i % 10)) // message error
+            return 0;
+    }
+    return 60;
+}
 
 void tx() {
     unsigned char tx_buf[129] = {0};
@@ -56,24 +62,27 @@ unsigned int rx() {
     unsigned char rx_buf[129] = {0};
     unsigned char *buf;
     unsigned int exc_word;
-    while (CC2520_Receive_Packet_Pending(1) == 0) {
+    while (CC2520_Receive_Packet_Pending(1) == 0)
+    {
         exc_word = CC2520_Read_Exception(1);
-			if(CC2520_Decode_Exception(exc_word, CC2520_EXC_RX_OVERFLOW)){
-				//printf("rx overflow\n");
-				CC2520_Instruction(1, CC2520_INS_SFLUSHRX);
-				CC2520_Instruction(1, CC2520_INS_SRFOFF);
-				CC2520_Instruction(1, CC2520_INS_SRXON);
-				CC2520_Clear_Exception(1, CC2520_EXC_RX_OVERFLOW);
-			    return 0;
-            }
+        if (CC2520_Decode_Exception(exc_word, CC2520_EXC_RX_OVERFLOW))
+        {
+            //printf("rx overflow\n");
+            CC2520_Instruction(1, CC2520_INS_SFLUSHRX);
+            CC2520_Instruction(1, CC2520_INS_SRFOFF);
+            CC2520_Instruction(1, CC2520_INS_SRXON);
+            CC2520_Clear_Exception(1, CC2520_EXC_RX_OVERFLOW);
+            return 0;
+        }
     }
-    if(CC2520_Decode_Exception(exc_word, CC2520_EXC_RX_OVERFLOW)){
-                //printf("rx overflow\n");
-                CC2520_Instruction(1, CC2520_INS_SFLUSHRX);
-                CC2520_Instruction(1, CC2520_INS_SRFOFF);
-                CC2520_Instruction(1, CC2520_INS_SRXON);
-                CC2520_Clear_Exception(1, CC2520_EXC_RX_OVERFLOW);
-                return 0;
+    if (CC2520_Decode_Exception(exc_word, CC2520_EXC_RX_OVERFLOW))
+    {
+        //printf("rx overflow\n");
+        CC2520_Instruction(1, CC2520_INS_SFLUSHRX);
+        CC2520_Instruction(1, CC2520_INS_SRFOFF);
+        CC2520_Instruction(1, CC2520_INS_SRXON);
+        CC2520_Clear_Exception(1, CC2520_EXC_RX_OVERFLOW);
+        return 0;
     }
     int recv_count = CC2520_Receive_Packet_Non_Blocking(1, rx_buf);
     int len = IEEE802154_Get_Data_Frame_Payload_Len(rx_buf);
@@ -131,9 +140,19 @@ int main(int argc, char *argv[]) {
             printf("\tTotal Sent Packet: %d\n", send_count);
             printf("\tTotal Sent Size: %lf Kbits\n", (double) send_count * 60 * 8 / (1024));
             printf("\tThroughput: %lf Kbps\n", (double) send_count * 60 * 8 / (1024 * testing_duration));
-        } else
+        } else if (argv[2][0] == '1')
         {
             printf("WISE CC2520 Send: \n");
+            WISE_Params params;
+            WISE_Init(&params, 50, 1, 200);
+            int send_count = 0;
+            while (time(NULL) - start_time < testing_duration)
+            {
+                WISE_tx(&params);
+                usleep(sleep_in_us);
+                send_count++;
+            }
+            WISE_Exit(&params);
         }
 
     }
@@ -157,32 +176,20 @@ int main(int argc, char *argv[]) {
             printf("Statistics: \n");
             printf("\tTotal Received Size: %lf Kbits\n", (double) recv_count * 8 / 1024);
             printf("\tThroughput: %lf kbps\n", (double) recv_count * 8 / (1024 * testing_duration));
-        } else
+        } else if (argv[2][0] == '1')
         {
             printf("WISE CC2520 Recv: \n");
+            unsigned int recv_count = 0;
+            while (time(NULL) - start_time + 2 < testing_duration)
+            {
+                recv_count += WISE_rx();
+                usleep(10);
+            }
+            printf("Recv finished\n");
+            printf("Statistics: \n");
+            printf("\tTotal Received Size: %lf Kbits\n", (double) recv_count * 8 / 1024);
+            printf("\tThroughput: %lf kbps\n", (double) recv_count * 8 / (1024 * testing_duration));
         }
-
     }
-//    WISE_Params params;
-//    WISE_Init(&params, 50, 1, 200);
-//    if (argc < 2)
-//    {
-//        printf("Error: please specify the sender or receiver by providing '0' or '1' in startup\n");
-//    } else if (argv[1][0] == '0')
-//    {
-//        CC2520_Set_Channel(0, 11);
-//        CC2520_Set_TX_Power(0, 5);
-//        CC2520_Set_Channel(1, 11);
-//        CC2520_Set_TX_Power(1, 5);
-//        WISE_tx(&params);
-//    } else if (argv[1][0] == '1')
-//    {
-//        unsigned char rx_buf[50] = {0};
-//        CC2520_Set_Channel(0, 11);
-//        CC2520_Set_TX_Power(0, 5);
-//        CC2520_Set_Channel(1, 11);
-//        CC2520_Set_TX_Power(1, 5);
-//        WISE_rx(rx_buf);
-//    }
     return 0;
 }
