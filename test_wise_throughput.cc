@@ -144,7 +144,15 @@ int main(int argc, char *argv[]) {
         {
             printf("WISE CC2520 Send: \n");
             WISE_Params params;
-            WISE_Init(&params, 50, 1, 200);
+            cca_sampling_args_t args;
+            args.stat = &(params.ccaStat);
+            args.window_time_span = (50);
+            args.sample_freq = (200);
+            pthread_t sampling_thread;
+            pthread_create(&sampling_thread, NULL, start_cca_sampling, (void *) &args);
+            pthread_detach(sampling_thread);
+            params.alpha = 1;
+
             int send_count = 0;
             while (time(NULL) - start_time < testing_duration)
             {
@@ -152,7 +160,7 @@ int main(int argc, char *argv[]) {
                 usleep(sleep_in_us);
                 send_count++;
             }
-            WISE_Exit(&params);
+            stop_cca_sampling(&params.ccaStat);
         }
 
     }

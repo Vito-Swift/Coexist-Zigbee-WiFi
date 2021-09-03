@@ -29,7 +29,7 @@ void rx() {
 int main(int argc, char *argv[]) {
     CC2520_Init();
     WISE_Params params;
-    WISE_Init(&params, 50, 1, 200);
+//    WISE_Init(&params, 50, 1, 200);
     if (argc == 1)
     {
         CC2520_Set_Channel(0, 26);
