@@ -53,5 +53,5 @@ target_link_libraries(testCCAWhiteSpaceAge DRIVER_LIB Threads::Threads ${WIRINGP
 target_include_directories(testCCAWhiteSpaceAge PRIVATE pthread)
 
 add_executable(test_wise_throughput test_wise_throughput.cc ${DRIVER_SRCS} ${DRIVER_INCLUDE})
-target_link_libraries(test_wise_throughput DRIVER_LIB Threads::Threads ${WIRINGPI_LIBRARIES})
+target_link_libraries(test_wise_throughput DRIVER_LIB Threads::Threads ${WIRINGPI_LIBRARIES} WISE_LIB)
 target_include_directories(test_wise_throughput PRIVATE pthread)
