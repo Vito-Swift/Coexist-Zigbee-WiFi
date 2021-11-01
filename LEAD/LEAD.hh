@@ -30,6 +30,6 @@ inline void LEAD_destroy(LEAD_DM *dm) {
 
 void LEAD_send(LEAD_DM *dm, uint16_t plen, uint8_t *pbuffer, CC2520_addr_t *addr);
 
-uint16_t LEAD_recv(LEAD_DM *dm, uint8_t *pbuffer, CC2520_addr_t *addr);
+int32_t LEAD_recv(LEAD_DM *dm, uint8_t *pbuffer, CC2520_addr_t *addr);
 
 #endif //ZIGBEETESTBED_LEAD_HH
