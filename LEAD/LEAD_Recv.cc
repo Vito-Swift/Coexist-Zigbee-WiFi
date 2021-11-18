@@ -39,5 +39,8 @@ int32_t LEAD_recv(LEAD_DM *dm, uint8_t *pbuf) {
     if (!CC2520_CRC_Correct(rx_buf, recv_count))
         return -1;
 
+    size_t enclen = correct_convolutional_encode_len(dm->conv, packet_len);
+    uint8_t *soft = (uint8_t *) malloc(enclen * sizeof(uint8_t));
+    recvlen = correct_convolutional_decode_soft((correct_convolutional *) conv,)
     return recvlen;
 }
