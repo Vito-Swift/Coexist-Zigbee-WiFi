@@ -52,6 +52,14 @@ add_executable(testCCAWhiteSpaceAge testCCAWhiteSpaceAge.cc ${DRIVER_SRCS} ${DRI
 target_link_libraries(testCCAWhiteSpaceAge DRIVER_LIB Threads::Threads ${WIRINGPI_LIBRARIES})
 target_include_directories(testCCAWhiteSpaceAge PRIVATE pthread)
 
+add_executable(prob_send prob_send.cc ${DRIVER_SRCS} ${DRIVER_INCLUDE})
+target_link_libraries(prob_send DRIVER_LIB Threads::Threads ${WIRINGPI_LIBRARIES})
+target_include_directories(prob_send PRIVATE pthread)
+
 add_executable(test_wise_throughput test_wise_throughput.cc ${DRIVER_SRCS} ${DRIVER_INCLUDE})
 target_link_libraries(test_wise_throughput DRIVER_LIB Threads::Threads ${WIRINGPI_LIBRARIES} WISE_LIB)
 target_include_directories(test_wise_throughput PRIVATE pthread)
+
+add_executable(wise integrate_demo.cc ${DRIVER_SRCS} ${DRIVER_INCLUDE})
+target_link_libraries(wise DRIVER_LIB Threads::Threads ${WIRINGPI_LIBRARIES} WISE_LIB mysqlcppconn)
+target_include_directories(wise PRIVATE pthread)

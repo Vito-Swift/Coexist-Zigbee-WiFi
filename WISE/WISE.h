@@ -13,7 +13,7 @@
 
 // max channel rate of IEEE802154 is 250kbps
 // unit of variable is in bytes per milli-second
-const unsigned int channel_rate = (250 * 1024) / (1000 * 8);
+const float channel_rate = (250 * 1024) / (1000 * 8);
 typedef struct {
   struct cca_stat ccaStat;
   float presto_lambda;     // mean in the Pareto model of the white space (unit in ms)

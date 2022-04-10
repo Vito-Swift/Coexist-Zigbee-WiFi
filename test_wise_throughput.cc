@@ -147,7 +147,7 @@ int main(int argc, char *argv[]) {
             cca_sampling_args_t args;
             args.stat = &(params.ccaStat);
             args.window_time_span = (50);
-            args.sample_freq = (200);
+            args.sample_freq = (1000);
             pthread_t sampling_thread;
             pthread_create(&sampling_thread, NULL, start_cca_sampling, (void *) &args);
             pthread_detach(sampling_thread);
@@ -161,6 +161,10 @@ int main(int argc, char *argv[]) {
                 send_count++;
             }
             stop_cca_sampling(&params.ccaStat);
+            printf("Statistics: \n");
+            printf("\tTotal Sent Packet: %d\n", send_count);
+            printf("\tTotal Sent Size: %lf Kbits\n", (double) send_count * 60 * 8 / (1024));
+            printf("\tThroughput: %lf Kbps\n", (double) send_count * 60 * 8 / (1024 * testing_duration));
         }
 
     }

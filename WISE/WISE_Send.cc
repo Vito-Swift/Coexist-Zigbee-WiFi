@@ -7,19 +7,18 @@
 #include <time.h>
 #include <math.h>
 
-unsigned char get_subframe_size(WISE_Params *params, unsigned char buf_len) {
-    if (CC2520_Get_CCA(TX_DEV))
-    {
-        // unit in ms
-        float avg_whitespace_age = get_avg_whitespace_age_in_window(&params->ccaStat);
-        // unit in ms
-        float current_whitespace_age = get_whitespace_age_usec(&params->ccaStat) * 1000;
-        int opt_subframe_size =
-            floor(current_whitespace_age * channel_rate *
-                ((pow(1 - params->T, -1 * (avg_whitespace_age - params->alpha) / avg_whitespace_age)) - 1));
-        return opt_subframe_size > buf_len ? buf_len : opt_subframe_size;
-    }
-    return 0;
+unsigned int get_subframe_size(WISE_Params *params, unsigned char buf_len) {
+    long current_whitespace_age = get_whitespace_age_usec(&params->ccaStat);
+    if (current_whitespace_age <= 0) // channel busy
+        return 0;
+    current_whitespace_age /= 1000;
+    printf("%ld\n", current_whitespace_age);
+    // unit in ms
+    float avg_whitespace_age = get_avg_whitespace_age_in_window(&params->ccaStat);
+    current_whitespace_age = current_whitespace_age > 5 ? current_whitespace_age : 5;
+    int opt_subframe_size = int(floor(current_whitespace_age * channel_rate *
+                ((pow(1 - 0.5, -1 * (avg_whitespace_age - 1) / avg_whitespace_age)) - 1)));
+    return opt_subframe_size > buf_len ? buf_len : opt_subframe_size;
 }
 
 void WISE_Send(WISE_Params *params, unsigned char *buf, unsigned char buf_len, CC2520_addr_t *addr) {
@@ -52,12 +51,14 @@ void WISE_Send(WISE_Params *params, unsigned char *buf, unsigned char buf_len, C
     while (1)
     {
         size = get_subframe_size(params, buf_len);
+        printf("Get Session Subframe Size: %d\n", size);
         if (size >= hdr_len)
         {
             CC2520_Send_Packet_Blocking(TX_DEV, mac_hdr, send_count);
 //            printf("[DEBUG] send srf\n");
             break;
         }
+        usleep(10);
     }
 
     // payload sub-frame
@@ -66,7 +67,8 @@ void WISE_Send(WISE_Params *params, unsigned char *buf, unsigned char buf_len, C
     unsigned char *payload = WISE_Get_Payload(sub_frame);
     while (1)
     {
-        size = get_subframe_size(params, buf_len);
+        size = get_subframe_size(params, buf_len - total_size);
+        printf("Get Subframe Size: %d\n", size);
         if (size <= 0) continue;
         if (total_size + size >= buf_len)
         {

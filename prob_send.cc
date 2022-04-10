@@ -24,7 +24,7 @@ int main(void) {
     IEEE802154_Fill_Sequence_Num(tx_buf, 0);
 
     // arg list: *Buf, dst_panid, dst_addr, src_panid, src_addr 
-    IEEE802154_Fill_Data_Frame_Short_Addr(tx_buf, 11110, 22220, 33333, 44444);
+    IEEE802154_Fill_Data_Frame_Short_Addr(tx_buf, 0x1aaa, 0xffff, 0x1aa, 44444);
 
     // obtain the pointer of the start point of packet payload
     unsigned char *buf = IEEE802154_Data_Frame_Get_Payload_Pointer(tx_buf);
@@ -38,7 +38,7 @@ int main(void) {
         IEEE802154_Fill_Data_Frame_PHY_Frame_Len_Field(tx_buf, 114);
         send_count = CC2520_IEEE802154_Data_Frame_Get_SPI_Payload_Len(tx_buf, 114);
         CC2520_Send_Packet_Blocking(0, tx_buf, send_count);
-        sleep(1);
+        usleep(1000*500);
     }
 
     return 0;
