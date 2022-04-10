@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/test_wise.dir/test_wise.cc.o  -o test_wise  libWISE_LIB.a libDRIVER_LIB.a -pthread /usr/lib/libwiringPi.so 

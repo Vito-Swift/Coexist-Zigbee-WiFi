@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/auto_cca_collect.dir/auto_cca_collect.cc.o  -o auto_cca_collect  libDRIVER_LIB.a -pthread /usr/lib/libwiringPi.so 

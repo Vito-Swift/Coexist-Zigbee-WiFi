@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/wise.dir/integrate_demo.cc.o CMakeFiles/wise.dir/driver/CC2520.cc.o CMakeFiles/wise.dir/driver/CC2520_HW.cc.o CMakeFiles/wise.dir/cca_utils/cca_utils.cc.o  -o wise  libDRIVER_LIB.a /usr/lib/libwiringPi.so libWISE_LIB.a -lmysqlcppconn libDRIVER_LIB.a -pthread /usr/lib/libwiringPi.so 

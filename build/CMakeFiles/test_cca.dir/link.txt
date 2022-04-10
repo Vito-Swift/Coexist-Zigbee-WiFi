@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/test_cca.dir/test_cca.cc.o CMakeFiles/test_cca.dir/driver/CC2520.cc.o CMakeFiles/test_cca.dir/driver/CC2520_HW.cc.o CMakeFiles/test_cca.dir/cca_utils/cca_utils.cc.o  -o test_cca  /usr/lib/libwiringPi.so -pthread 
