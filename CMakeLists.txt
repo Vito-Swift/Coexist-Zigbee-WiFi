@@ -51,9 +51,9 @@ target_include_directories(DRIVER_LIB PRIVATE pthread)
 add_library(WISE_LIB ${WISE_SRC})
 target_link_libraries(WISE_LIB PRIVATE DRIVER_LIB)
 
-add_library(LEAD_LIB ${LEAD_SRC})
-target_include_directories(LEAD_LIB PRIVATE "/usr/local/include/")
-target_link_libraries(LEAD_LIB PRIVATE DRIVER_LIB correct correct_static)
+#add_library(LEAD_LIB ${LEAD_SRC})
+#target_include_directories(LEAD_LIB PRIVATE "/usr/local/include/")
+#target_link_libraries(LEAD_LIB PRIVATE DRIVER_LIB correct correct_static)
 
 ##################################################################################
 ######### ADD WISE PROJECT TARGETS

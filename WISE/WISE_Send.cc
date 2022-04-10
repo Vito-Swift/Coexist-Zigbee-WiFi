@@ -15,9 +15,11 @@ unsigned int get_subframe_size(WISE_Params *params, unsigned char buf_len) {
     printf("%ld\n", current_whitespace_age);
     // unit in ms
     float avg_whitespace_age = get_avg_whitespace_age_in_window(&params->ccaStat);
+    printf("%f\n", avg_whitespace_age);
     current_whitespace_age = current_whitespace_age > 5 ? current_whitespace_age : 5;
+    // close form: D * ((1-T)^(-(lambda-alpha)/lambda - 1))
     int opt_subframe_size = int(floor(current_whitespace_age * channel_rate *
-                ((pow(1 - 0.5, -1 * (avg_whitespace_age - 1) / avg_whitespace_age)) - 1)));
+                ((pow(1 - 0.5, -1 * (avg_whitespace_age - params->alpha) / avg_whitespace_age)) - 1)));
     return opt_subframe_size > buf_len ? buf_len : opt_subframe_size;
 }
 
@@ -37,12 +39,12 @@ void WISE_Send(WISE_Params *params, unsigned char *buf, unsigned char buf_len, C
                                           addr->src_pan_id,
                                           addr->src_addr);
 
-//    WISE start
+    // WISE start
     srand(time(NULL));
     unsigned char session_id = rand() % 0x40;
     unsigned char size;
     unsigned char send_count;
-//    TODO: need timeout of one transmission
+    // TODO: need timeout of one transmission
 
     // session registration frame
     WISE_Fill_Hdr(mac_hdr, session_id, 1, 0);

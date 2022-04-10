@@ -12,6 +12,11 @@ unsigned int max_throughput;
 unsigned int packet_per_sec;
 unsigned int sleep_in_us;
 unsigned int testing_duration = 20;     // lasting 20 seconds to benchmark the tx/rx
+int tx_power = 5;
+int tx_dev = 0;
+int tx_sampling_dev = 1;
+int rx_dev = 0;
+int channel = 13;
 
 void WISE_tx(WISE_Params *params) {
     CC2520_addr_t addr;
@@ -45,7 +50,13 @@ void tx() {
                                        IEEE802154_NO_ACK,
                                        IEEE802154_ADDR_MODE_SHORT_ADDR,
                                        IEEE802154_ADDR_MODE_SHORT_ADDR);
-    while (CC2520_Get_CCA(0) != 1);
+    int backoff_num = 0;
+    while (CC2520_Get_CCA(0) != 1 && backoff_num <= 5) {
+        backoff_num++;
+        int backoff_time = 10 * backoff_num * backoff_num + rand() % 20; 
+        usleep(backoff_time);
+    };
+    
     IEEE802154_Fill_Sequence_Num(tx_buf, 0);
     IEEE802154_Fill_Data_Frame_Short_Addr(tx_buf, 11110, 22220, 33333, 44444);
     unsigned char *buf = IEEE802154_Data_Frame_Get_Payload_Pointer(tx_buf);
@@ -107,7 +118,7 @@ int main(int argc, char *argv[]) {
     sleep_in_us = 1000000 / packet_per_sec;
     // if packet interval is larger than 2000, keep it as sending rate (spare 10 us)
     // if packet interval is not larger than 20, sleep 1000 us for each packet send;
-//    sleep_in_us = sleep_in_us > 3000 ? sleep_in_us - 3500 : 500;
+    // sleep_in_us = sleep_in_us > 3000 ? sleep_in_us - 3500 : 500;
     sleep_in_us = 250;
     printf("Testing Throughput: %d Kbps\n", max_throughput / 1024);
     printf("Sending Interval: %d us\n", sleep_in_us);
@@ -121,8 +132,8 @@ int main(int argc, char *argv[]) {
     if (argv[1][0] == '0')
     {
         printf("========Benchmark sender program========\n");
-        CC2520_Set_Channel(0, 11);
-        CC2520_Set_TX_Power(0, -7);
+        CC2520_Set_Channel(tx_dev, channel);
+        CC2520_Set_TX_Power(tx_dev, tx_power);
 
         time_t start_time = time(NULL);
         if (argv[2][0] == '0')
@@ -144,14 +155,16 @@ int main(int argc, char *argv[]) {
         {
             printf("WISE CC2520 Send: \n");
             WISE_Params params;
+            params.alpha = 1;
+
+            // start sampling thread
             cca_sampling_args_t args;
             args.stat = &(params.ccaStat);
-            args.window_time_span = (50);
-            args.sample_freq = (1000);
+            args.window_time_span = 50;
+            args.sample_freq = 1000;
             pthread_t sampling_thread;
             pthread_create(&sampling_thread, NULL, start_cca_sampling, (void *) &args);
             pthread_detach(sampling_thread);
-            params.alpha = 1;
 
             int send_count = 0;
             while (time(NULL) - start_time < testing_duration)
@@ -172,8 +185,8 @@ int main(int argc, char *argv[]) {
     {
         printf("========Benchmark receiver program========\n");
         time_t start_time = time(NULL);
-        CC2520_Set_Channel(1, 11);
-        CC2520_Set_TX_Power(1, -7);
+        CC2520_Set_Channel(rx_dev, channel);
+        CC2520_Set_TX_Power(rx_dev, tx_power);
 
         if (argv[2][0] == '0')
         {

@@ -37,7 +37,7 @@ void *start_cca_sampling(void *vargs) {
     args->stat->channel_status = CC2520_Get_CCA(1);
     pthread_mutex_unlock(&args->stat->request_mutex);
 
-    // t = 1 / freq
+    // t = 1 / freq (unit in nanoseconds)
     auto sample_interval = (unsigned int) ((1 / (double) args->stat->sample_freq) * 1000000);
 
     while (!test_cancel(&(args->stat->terminate_mutex), &(args->stat->terminate_flag))) {
@@ -97,8 +97,13 @@ float get_avg_whitespace_age_in_window(cca_stat *stat) {
         }
     }
     pthread_mutex_unlock(&stat->request_mutex);
-    return white_window_count != 0 ?
-           1000 * ((float) total_white_window_time / ((float) stat->sample_freq * (float) white_window_count)) : 0;
+    float avg_whitespace_age_in_s = 0.0;
+    if (white_window_count != 0) {
+        avg_whitespace_age_in_s = 1000 * float(total_white_window_time);
+        avg_whitespace_age_in_s *= 1.0 / float(stat->sample_freq);
+        avg_whitespace_age_in_s *= 1.0 / float(white_window_count);
+    }
+    return avg_whitespace_age_in_s;
 }
 
 void stop_cca_sampling(cca_stat *stat) {
